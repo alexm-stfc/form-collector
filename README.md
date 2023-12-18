@@ -1,3 +1,11 @@
+### Install
+This repo is an installable python app managed by poetry. To Install you have a few options:
+* Clone the repo and run `poetry install` and then `poetry shell`. This is best for development.
+* Run `pip install 'rsg_form_collector @ git+https://github.com/alexm-stfc/form-collector.git@main#egg=rsg_form_collector'`
+* Add the above string as a dependency in another app.
+
+Once you have it installed an the correct environment activated, you can invoke the app with `python -m rsg_form_collector`
+
 ### Setup
 To get this to work, you need to create somee files in the working directory from which you will run the app.
 * Create an allowed_respondents.json file. This is a simple JSON list of strings- email addresses who should be allowed to respond to the form.
