@@ -15,7 +15,7 @@ DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
 def main():
     """Get some data from a google form."""
     # Load some basic config from a file
-    with open("./config.toml", "r", encoding="utf-8") as file:
+    with open("./config.toml", "rb") as file:
         config = tomllib.load(file)
 
     # Load a list of allowed respondents from file.
@@ -35,7 +35,7 @@ def main():
             scopes=SCOPES,
             redirect_uri="urn:ietf:wg:oauth:2.0:oob",
         )
-        flow.run_local_server()
+        flow.run_local_server(port=8090)
 
         with open("credentials.json", "w", encoding="utf-8") as file:
             file.write(flow.credentials.to_json())
@@ -58,7 +58,7 @@ def main():
     responses = [x for x in responses if x["respondentEmail"] in allowed_respondents]
 
     # Then do something with the responses.
-    for response in result["responses"]:
+    for response in responses:
         print(json.dumps(response, indent=2))
 
 
